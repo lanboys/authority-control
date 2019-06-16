@@ -1,9 +1,10 @@
 package com.light.ac.web.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
+import com.light.ac.domain.Permission;
+import com.light.ac.domain.User;
+import com.light.ac.service.PermissionService;
+import com.light.ac.service.UserService;
+import com.light.ac.vo.Result;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.light.ac.domain.Permission;
-import com.light.ac.domain.User;
-import com.light.ac.service.PermissionService;
-import com.light.ac.service.UserService;
-import com.light.ac.vo.Result;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {

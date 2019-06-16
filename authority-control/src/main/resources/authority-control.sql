@@ -1,22 +1,25 @@
--- --------------------------------------------------------
--- 主机:                           127.0.0.1
--- 服务器版本:                        5.6.23-log - MySQL Community Server (GPL)
--- 服务器操作系统:                      Win64
--- HeidiSQL 版本:                  9.2.0.4949
--- --------------------------------------------------------
+/*
+Navicat MySQL Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+Source Server         : localhost_3306
+Source Server Version : 50626
+Source Host           : localhost:3306
+Source Database       : authority-control
 
--- 导出 authority-control 的数据库结构
-CREATE DATABASE IF NOT EXISTS `authority-control` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `authority-control`;
+Target Server Type    : MYSQL
+Target Server Version : 50626
+File Encoding         : 65001
 
+Date: 2019-06-16 17:51:23
+*/
 
--- 导出  表 authority-control.t_permission 结构
-CREATE TABLE IF NOT EXISTS `t_permission` (
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `t_permission`;
+CREATE TABLE `t_permission` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '菜单名称',
   `pid` int(11) NOT NULL COMMENT '父级菜单id',
@@ -28,75 +31,88 @@ CREATE TABLE IF NOT EXISTS `t_permission` (
   `icon` varchar(32) DEFAULT NULL COMMENT '图标',
   `sort` tinyint(4) NOT NULL COMMENT '排序',
   PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- 正在导出表  authority-control.t_permission 的数据：~15 rows (大约)
-/*!40000 ALTER TABLE `t_permission` DISABLE KEYS */;
-INSERT INTO `t_permission` (`permission_id`, `name`, `pid`, `parent_name`, `type`, `url`, `code`, `color`, `icon`, `sort`) VALUES
-	(1, '系统管理', 0, NULL, 1, NULL, NULL, NULL, NULL, 1),
-	(2, '用户管理', 1, '系统管理', 2, 'user/listUI', 'user:listUI', NULL, NULL, 1),
-	(3, '新增', 2, '用户管理', 3, NULL, 'user:add', 'btn-primary', 'icon-ok', 2),
-	(4, '编辑', 2, '用户管理', 3, NULL, 'user:update', 'btn-warning', 'icon-edit', 3),
-	(5, '删除', 2, '用户管理', 3, NULL, 'user:delete', 'btn-danger', 'icon-trash', 4),
-	(6, '角色管理', 1, '系统管理', 2, 'role/listUI', 'role:listUI', NULL, NULL, 2),
-	(7, '新增', 6, '角色管理', 3, NULL, 'role:add', 'btn-primary', 'icon-ok', 2),
-	(8, '编辑', 6, '角色管理', 3, NULL, 'role:update', 'btn-warning', 'icon-edit', 3),
-	(9, '删除', 6, '角色管理', 3, NULL, 'role:delete', 'btn-danger', 'icon-trash', 4),
-	(10, '权限管理', 1, '系统管理', 2, 'permission/listUI', 'permission:listUI', NULL, NULL, 3),
-	(11, '新增', 10, '权限管理', 3, NULL, 'permission:add', 'btn-primary', 'icon-ok', 1),
-	(12, '编辑', 10, '权限管理', 3, NULL, 'permission:update', 'btn-warning', 'icon-edit', 2),
-	(13, '删除', 10, '权限管理', 3, NULL, 'permission:delete', 'btn-danger', 'icon-trash', 3),
-	(14, '设置角色', 2, '用户管理', 3, NULL, 'user:setRole', 'btn-success', 'icon-cog', 1),
-	(15, '设置权限', 6, '角色管理', 3, NULL, 'role:setPermission', 'btn-success', 'icon-cog', 1);
-/*!40000 ALTER TABLE `t_permission` ENABLE KEYS */;
+-- ----------------------------
+-- Records of t_permission
+-- ----------------------------
+INSERT INTO `t_permission` VALUES ('1', '系统管理', '0', null, '1', null, null, null, null, '1');
+INSERT INTO `t_permission` VALUES ('2', '用户管理', '1', '系统管理', '2', 'user/listUI', 'user:listUI', null, null, '1');
+INSERT INTO `t_permission` VALUES ('3', '新增', '2', '用户管理', '3', null, 'user:add', 'btn-primary', 'icon-ok', '2');
+INSERT INTO `t_permission` VALUES ('4', '编辑', '2', '用户管理', '3', null, 'user:update', 'btn-warning', 'icon-edit', '3');
+INSERT INTO `t_permission` VALUES ('5', '删除', '2', '用户管理', '3', null, 'user:delete', 'btn-danger', 'icon-trash', '4');
+INSERT INTO `t_permission` VALUES ('6', '角色管理', '1', '系统管理', '2', 'role/listUI', 'role:listUI', null, null, '2');
+INSERT INTO `t_permission` VALUES ('7', '新增', '6', '角色管理', '3', null, 'role:add', 'btn-primary', 'icon-ok', '2');
+INSERT INTO `t_permission` VALUES ('8', '编辑', '6', '角色管理', '3', null, 'role:update', 'btn-warning', 'icon-edit', '3');
+INSERT INTO `t_permission` VALUES ('9', '删除', '6', '角色管理', '3', null, 'role:delete', 'btn-danger', 'icon-trash', '4');
+INSERT INTO `t_permission` VALUES ('10', '权限管理', '1', '系统管理', '2', 'permission/listUI', 'permission:listUI', null, null, '3');
+INSERT INTO `t_permission` VALUES ('11', '新增', '10', '权限管理', '3', null, 'permission:add', 'btn-primary', 'icon-ok', '1');
+INSERT INTO `t_permission` VALUES ('12', '编辑', '10', '权限管理', '3', null, 'permission:update', 'btn-warning', 'icon-edit', '2');
+INSERT INTO `t_permission` VALUES ('13', '删除', '10', '权限管理', '3', null, 'permission:delete', 'btn-danger', 'icon-trash', '3');
+INSERT INTO `t_permission` VALUES ('14', '设置角色', '2', '用户管理', '3', null, 'user:setRole', 'btn-success', 'icon-cog', '1');
+INSERT INTO `t_permission` VALUES ('15', '设置权限', '6', '角色管理', '3', null, 'role:setPermission', 'btn-success', 'icon-cog', '1');
+INSERT INTO `t_permission` VALUES ('16', '订单管理', '0', null, '1', null, null, null, null, '2');
+INSERT INTO `t_permission` VALUES ('17', '配送管理', '16', '订单管理', '2', 'delivery/listUI', 'delivery:listUI', null, null, '1');
+INSERT INTO `t_permission` VALUES ('18', '售后管理', '16', '订单管理', '2', 'cs/listUI', 'cs:listUI', null, null, '2');
 
-
--- 导出  表 authority-control.t_role 结构
-CREATE TABLE IF NOT EXISTS `t_role` (
+-- ----------------------------
+-- Table structure for t_role
+-- ----------------------------
+DROP TABLE IF EXISTS `t_role`;
+CREATE TABLE `t_role` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '角色名称',
   `descr` varchar(255) DEFAULT NULL COMMENT '角色说明',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- 正在导出表  authority-control.t_role 的数据：~1 rows (大约)
-/*!40000 ALTER TABLE `t_role` DISABLE KEYS */;
-INSERT INTO `t_role` (`role_id`, `name`, `descr`) VALUES
-	(1, '超级管理员', '最高权限');
-/*!40000 ALTER TABLE `t_role` ENABLE KEYS */;
+-- ----------------------------
+-- Records of t_role
+-- ----------------------------
+INSERT INTO `t_role` VALUES ('1', '超级管理员', '最高权限');
+INSERT INTO `t_role` VALUES ('2', '订单管理员', '只能操作订单管理目录及其菜单');
 
-
--- 导出  表 authority-control.t_role_permission 结构
-CREATE TABLE IF NOT EXISTS `t_role_permission` (
+-- ----------------------------
+-- Table structure for t_role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `t_role_permission`;
+CREATE TABLE `t_role_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
--- 正在导出表  authority-control.t_role_permission 的数据：~14 rows (大约)
-/*!40000 ALTER TABLE `t_role_permission` DISABLE KEYS */;
-INSERT INTO `t_role_permission` (`id`, `role_id`, `permission_id`) VALUES
-	(1, 1, 1),
-	(2, 1, 2),
-	(3, 1, 3),
-	(4, 1, 4),
-	(5, 1, 5),
-	(6, 1, 6),
-	(7, 1, 7),
-	(8, 1, 8),
-	(9, 1, 9),
-	(10, 1, 10),
-	(11, 1, 11),
-	(12, 1, 12),
-	(13, 1, 13),
-	(14, 1, 14),
-	(15, 1, 15);
-/*!40000 ALTER TABLE `t_role_permission` ENABLE KEYS */;
+-- ----------------------------
+-- Records of t_role_permission
+-- ----------------------------
+INSERT INTO `t_role_permission` VALUES ('16', '2', '16');
+INSERT INTO `t_role_permission` VALUES ('17', '2', '17');
+INSERT INTO `t_role_permission` VALUES ('18', '2', '18');
+INSERT INTO `t_role_permission` VALUES ('19', '1', '1');
+INSERT INTO `t_role_permission` VALUES ('20', '1', '2');
+INSERT INTO `t_role_permission` VALUES ('21', '1', '3');
+INSERT INTO `t_role_permission` VALUES ('22', '1', '4');
+INSERT INTO `t_role_permission` VALUES ('23', '1', '5');
+INSERT INTO `t_role_permission` VALUES ('24', '1', '14');
+INSERT INTO `t_role_permission` VALUES ('25', '1', '6');
+INSERT INTO `t_role_permission` VALUES ('26', '1', '7');
+INSERT INTO `t_role_permission` VALUES ('27', '1', '8');
+INSERT INTO `t_role_permission` VALUES ('28', '1', '9');
+INSERT INTO `t_role_permission` VALUES ('29', '1', '15');
+INSERT INTO `t_role_permission` VALUES ('30', '1', '10');
+INSERT INTO `t_role_permission` VALUES ('31', '1', '11');
+INSERT INTO `t_role_permission` VALUES ('32', '1', '12');
+INSERT INTO `t_role_permission` VALUES ('33', '1', '13');
+INSERT INTO `t_role_permission` VALUES ('34', '1', '16');
+INSERT INTO `t_role_permission` VALUES ('35', '1', '17');
+INSERT INTO `t_role_permission` VALUES ('36', '1', '18');
 
-
--- 导出  表 authority-control.t_user 结构
-CREATE TABLE IF NOT EXISTS `t_user` (
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL COMMENT '用户名',
   `password` varchar(64) NOT NULL COMMENT '密码',
@@ -107,28 +123,27 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   `create_time` datetime NOT NULL,
   `update_time` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- 正在导出表  authority-control.t_user 的数据：~2 rows (大约)
-/*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` (`user_id`, `user_name`, `password`, `email`, `phone`, `salt`, `status`, `create_time`, `update_time`) VALUES
-	(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@163.com', NULL, 'abc', 1, '2017-12-12 12:42:20', '2017-12-12 12:42:22');
-/*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+INSERT INTO `t_user` VALUES ('1', 'admin', '900150983cd24fb0d6963f7d28e17f72', 'admin@163.com', null, 'abc', '1', '2017-12-12 12:42:20', '2017-12-12 12:42:22');
+INSERT INTO `t_user` VALUES ('2', 'order', '900150983cd24fb0d6963f7d28e17f72', 'order@163.com', null, 'abc', '1', '2017-12-12 12:42:20', '2017-12-12 12:42:22');
 
-
--- 导出  表 authority-control.t_user_role 结构
-CREATE TABLE IF NOT EXISTS `t_user_role` (
+-- ----------------------------
+-- Table structure for t_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_role`;
+CREATE TABLE `t_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- 正在导出表  authority-control.t_user_role 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `t_user_role` DISABLE KEYS */;
-INSERT INTO `t_user_role` (`id`, `user_id`, `role_id`) VALUES
-	(1, 1, 1);
-/*!40000 ALTER TABLE `t_user_role` ENABLE KEYS */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+-- ----------------------------
+-- Records of t_user_role
+-- ----------------------------
+INSERT INTO `t_user_role` VALUES ('1', '1', '1');
+INSERT INTO `t_user_role` VALUES ('2', '2', '2');
