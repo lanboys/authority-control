@@ -14,17 +14,25 @@
 		<property name="filters">
 			<map>
 				<entry key="test">
-					<bean class="com.light.ac.web.realm.TestFilter"/>
+					<bean class="com.light.ac.web.TestFilter"/>
 				</entry>
 			</map>
 		</property>
 		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
 		<property name="filterChainDefinitions">
 			<value>
-				/login=anon
-				/**=test
+				/login=anon,test
+				/**=loginFilter,test
 			</value>
 		</property>
+	</bean>
+
+	<bean id="loginFilter" class="com.light.ac.web.LoginFilter"/>
+
+	<!-- BeanPostProcessor测试 -->
+	<bean class="com.light.ac.web.processor.MyPostProcessor"/>
+	<bean class="com.light.ac.web.processor.TestBean" init-method="init">
+		<property name="name" value="lanbing"/>
 	</bean>
 
 	<!-- 安全管理器 -->
